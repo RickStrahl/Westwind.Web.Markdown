@@ -7,14 +7,14 @@ Instead you can add a control like this into the page:
 
 ```html
 <ww:Markdown runat="server" id="md1">
-### 1.6.2
-*September 10th, 2017*
-
-* **Keyboard support for Context Menu**  
-You can now pop up the context menu via keyboard using the Windows context menu key (or equivalent). The menu is now cursor navigable. This brings spell checking and various edit operations to keyboard only use.
-
-* **Fix: `UseSingleWindow=false` no longer opens Remembered Documents**   
-When not running in `UseSingleWindow` mode, the `RememberLastDocumentsLength` setting has no effect and no previous windows are re-opened. This is so multiple open windows won't open the same documents all the time. In `UseSingleWindow` mode last documents are remembered and opened when starting MM for the first time.
+    ### 1.6.2
+    *September 10th, 2017*
+    
+    * **Keyboard support for Context Menu**  
+    You can now pop up the context menu via keyboard using the Windows context menu key (or equivalent). The menu is now cursor navigable. This brings spell checking and various edit operations to keyboard only use.
+    
+    * **Fix: `UseSingleWindow=false` no longer opens Remembered Documents**   
+    When not running in `UseSingleWindow` mode, the `RememberLastDocumentsLength` setting has no effect and no previous windows are re-opened. This is so multiple open windows won't open the same documents all the time. In `UseSingleWindow` mode last documents are remembered and opened when starting MM for the first time.
 </ww:Markdown>
 ```
 
