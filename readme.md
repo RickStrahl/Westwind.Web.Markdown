@@ -124,13 +124,23 @@ If you'd like to highlight your code snippets with syntax highlighting I recomme
 </script>
 ```
 
+## License
+The Westwind.Web.MarkdownControl library is an open source product licensed under **[MIT license](http://opensource.org/licenses/MIT)**, and there's no charge to use, integrate or modify the code for this project. You are free to use it in personal, commercial, government and any other type of application. Commercial licenses are also available.
+
+All source code is copyright West Wind Technologies, regardless of changes made to them. Any source code modifications must leave the original copyright code headers intact.
+
+## Acknowledgements
+This library uses the following excellent components:
+
+* [MarkDig Markdown Parser](https://github.com/lunet-io/markdig)
+
 ---
 
 <div style="margin-top: 30px;font-size: 0.8em;
             border-top: 1px solid #eee;padding-top: 8px;">
     <img src="https://markdownmonster.west-wind.com/favicon.png"
          style="height: 20px;float: left; margin-right: 10px;" height="20" width="20" />
-    created and published with 
+    content created and published with 
     <a href="https://markdownmonster.west-wind.com"
        target="top">Markdown Monster</a>
 </div>
