@@ -76,7 +76,6 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
             var html = htmlWriter.ToString();
             
             html = ParseFontAwesomeIcons(html);
-            html = ParseExternalLinks(html);
 
             //if (!mmApp.Configuration.MarkdownOptions.AllowRenderScriptTags)
             html = ParseScript(html);  
@@ -84,8 +83,10 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
             return html;
         }
 
+
         protected virtual MarkdownPipelineBuilder CreatePipelineBuilder()
         {
+            
             var builder = new MarkdownPipelineBuilder()
                 .UseEmphasisExtras()
                 .UsePipeTables()
@@ -106,6 +107,7 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
                 builder = builder.UseTaskLists();
                 //builder = builder.UseSmartyPants();            
 
+            
             if (_usePragmaLines)
                 builder = builder.UsePragmaLines();
 
