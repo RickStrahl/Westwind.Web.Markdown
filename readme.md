@@ -130,7 +130,7 @@ If you'd like to highlight your code snippets with syntax highlighting I recomme
             border-top: 1px solid #eee;padding-top: 8px;">
     <img src="https://markdownmonster.west-wind.com/favicon.png"
          style="height: 20px;float: left; margin-right: 10px;" height="20" width="20" />
-    this post created and published with 
+    created and published with 
     <a href="https://markdownmonster.west-wind.com" 
        target="top">Markdown Monster</a> 
 </div>
