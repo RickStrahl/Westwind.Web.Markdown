@@ -18,22 +18,7 @@ namespace Westwind.Web.MarkdownControl
 
     public class Markdown : System.Web.UI.WebControls.Literal
     {
-        /// <summary>
-        /// If True renders line numbers of the markdown text
-        /// into the generated HTML with ID tags.
-        /// </summary>
-        [Description("If true renders Markdown line numbers into the generated HTML output.")]
-        [Category("Markdown")]
-        public bool RenderPragmaLines { get; set; }
-
-
-        /// <summary>
-        /// if True renders
-        /// </summary>
-        [Description("Forces the Markdown Parser to be reloaded.")]
-        [Category("Markdown")]
-        public bool ForceReload { get; set; }
-
+       
         [Description("Tries to strip whitespace before all lines based on the whitespace applied on the first line.")]
         [Category("Markdown")]
         public bool NormalizeWhiteSpace { get; set; } = true;
@@ -45,7 +30,7 @@ namespace Westwind.Web.MarkdownControl
 
             string markdown = NormalizeWhiteSpaceText(Text);
 
-            var parser = MarkdownParserFactory.GetParser(RenderPragmaLines,ForceReload);
+            var parser = MarkdownParserFactory.GetParser(false, false);
             var html = parser.Parse(markdown);
             writer.Write(html);
         }
@@ -107,6 +92,9 @@ namespace Westwind.Web.MarkdownControl
 
             return s.Split(new char[] { '\n' }).Take(maxLines).ToArray();
         }
+
+
+
 
         #region Static Helpers 
 

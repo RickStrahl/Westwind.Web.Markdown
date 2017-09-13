@@ -97,13 +97,13 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
 
                 builder = builder.UseAutoLinks();
                 builder = builder.UseAutoIdentifiers();
-                //builder = builder.UseAbbreviations();
-                //builder = builder.UseYamlFrontMatter();
+                builder = builder.UseAbbreviations();
+                builder = builder.UseYamlFrontMatter();
                 builder = builder.UseEmojiAndSmiley();
                 builder = builder.UseMediaLinks();
                 builder = builder.UseListExtras();
                 builder = builder.UseFigures();
-                //builder = builder.UseTaskLists();
+                builder = builder.UseTaskLists();
                 //builder = builder.UseSmartyPants();            
 
             if (_usePragmaLines)

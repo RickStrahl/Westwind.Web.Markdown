@@ -75,7 +75,7 @@ If you try this on a site that uses IIS with the ASP.NET Core module configured,
 The reason is that Lets Encrypt serves **an extensionless file out of a special folder** it creates off the root of the Web site:
 
 ```
-/.well-known/acme-challenge/<longId here>
+/.well-known/acme-challenge/xxxxxxXXXXXX
 ```
 
 By default your ASP.NET Core application doesn't have a way to serve this file as ASP.NET doesn't recognize it as a static file but handles it as an extensionless URL.
