@@ -65,6 +65,9 @@ Then embed the control into the page where you want the markdown to appear:
 </ww:Markdown>
 ```
 
+
+
+
 #### NormalizeWhiteSpace
 This property is true by default and if the control starts with a line that is indented it will strip the same indentation from all lines following. This allows text like this to render properly as Markdown:
 
@@ -83,7 +86,18 @@ This property is true by default and if the control starts with a line that is i
 </div>
 ```
 
-Notice the indentation of the markdown. If not normalized the entire markdown block would render as code (more than 4 white space characters which is a code block). When NormalizeWhiteSpace is true the leading space is stripped of the entire block.
+Notice the indentation of the markdown.  With `NormalizeWhiteSpace` off you need to explicitly left align the embedded Markdown Content:
+
+```xml
+<ww:Markdown runat="server" id="md2" NormalizeWhiteSpace="False">
+# Markdown Monster Change Log 
+[download latest version](https://markdownmonster.west-wind.com/download.aspx) &bull; 
+[install from Chocolatey](https://chocolatey.org/packages/MarkdownMonster) &bull; 
+[Web Site](https://markdownmonster.west-wind.com)
+</ww:Markdown>
+```
+
+If not normalized the entire markdown block would render as code (more than 4 white space characters which is a code block). When `NormalizeWhiteSpace` is true the leading space is stripped of the entire block.
 
 > #### First Line Determines Whitespace to strip
 > The first line of the Markdown block determines what white space is stripped from all other lines.
