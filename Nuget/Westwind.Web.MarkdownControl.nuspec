@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
+    <metadata minClientVersion="2.25">
+        <id>Westwind.Utilities</id>
+        <version>0.1</version>
+        <title>West Wind Web Literal Markdown Markdown Control</title>
+        <authors>Rick Strahl,West Wind Technologies</authors>
+        <licenseUrl>http://www.west-wind.com/WestwindToolkit/docs/?page=_2lp0u0i9b.htm</licenseUrl>
+        <projectUrl>http://www.west-wind.com/westwindToolkit</projectUrl>
+        <iconUrl>http://www.west-wind.com/westwindToolkit/images/WestwindWebToolkit_128x128.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>An ASP.NET Web Forms server control to render literal Markdown text</description>
+        <summary>A server control that allows embedding of literal Markdown text into a page that is parsed into HTML at runtime. The control also includes a static method for dynamic parsing of Markdown to HTML.</summary>
+        <releaseNotes></releaseNotes>
+        <copyright>Rick Strahl, West Wind Technologies 2007-2017</copyright>
+        <language>en-US</language>
+        <tags>Markdown WebForms Westwind</tags>
+        <frameworkAssemblies>
+            <frameworkAssembly assemblyName="System.Web" targetFramework="" />            
+        </frameworkAssemblies>
+        <dependencies>        
+            <dependency id="Markdig" version="0.13.3"  />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="lib\net40\Westwind.Utilities.dll" target="lib\net40\Westwind.Utilities.dll" />
+        <file src="lib\net40\Westwind.Utilities.xml" target="lib\net40\Westwind.Utilities.xml" />
+		<file src="lib\net45\Westwind.Utilities.dll" target="lib\net45\Westwind.Utilities.dll" />
+        <file src="lib\net45\Westwind.Utilities.xml" target="lib\net45\Westwind.Utilities.xml" />
+    </files>
+</package>
