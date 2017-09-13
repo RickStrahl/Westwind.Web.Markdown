@@ -1,7 +1,2 @@
-copy C:\projects2010\WestwindToolkit\Westwind.Utilities\bin\Release\Westwind.Utilities.dll .\lib\net45
-copy C:\projects2010\WestwindToolkit\Westwind.Utilities\bin\Release\Westwind.Utilities.xml .\lib\net45
-
-copy C:\projects2010\WestwindToolkit\Westwind.Utilities\bin\net40\Westwind.Utilities.dll .\lib\net40
-copy C:\projects2010\WestwindToolkit\Westwind.Utilities\bin\net40\Westwind.Utilities.xml .\lib\net40
-
-pause
+copy ..\Westwind.Web.MarkdownControl\bin\Release\Westwind.Web.MarkdownControl.dll .\lib\net40\
+copy ..\Westwind.Web.MarkdownControl\bin\Release\Westwind.Web.MarkdownControl.xml .\lib\net40\

@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Westwind.Web.MarkdownControl</name>
+    </assembly>
+    <members>
+        <member name="T:Westwind.Web.MarkdownControl.Markdown">
+            <summary>
+            An ASP.NET Server control that renders the embedded text as Markdown.
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.GetLines(System.String,System.Int32)">
+            <summary>
+            Parses a string into an array of lines broken
+            by \r\n or \n
+            </summary>
+            <param name="s">String to check for lines</param>
+            <param name="maxLines">Optional - max number of lines to return</param>
+            <returns>array of strings, or null if the string passed was a null</returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.Parse(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Renders raw markdown from string to HTML
+            </summary>
+            <param name="markdown"></param>
+            <param name="usePragmaLines"></param>
+            <param name="forceReload"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Renders raw Markdown from string to HTML.
+            </summary>
+            <param name="markdown"></param>
+            <param name="usePragmaLines"></param>
+            <param name="forceReload"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.IMarkdownParser.Parse(System.String)">
+            <summary>
+            Returns parsed markdown
+            </summary>
+            <param name="markdown"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase">
+            <summary>
+            Base class that includes various fix up methods for custom parsing
+            that can be called by the specific implementations.
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.Parse(System.String)">
+            <summary>
+            Parses markdown
+            </summary>
+            <param name="markdown"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseStrikeout(System.String)">
+            <summary>
+            Parses strikeout text ~~text~~. Single line (to linebreak) allowed only.
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.StripFrontMatter(System.String)">
+            <summary>
+            Strips 
+            </summary>
+            <param name="markdown"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseScript(System.String)">
+            <summary>
+            Parses out script tags that might not be encoded yet
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseFontAwesomeIcons(System.String)">
+            <summary>
+            Post processing routine that post-processes the HTML and 
+            replaces @icon- with fontawesome icons
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseExternalLinks(System.String)">
+            <summary>
+            Replaces all links with target="top" links
+            </summary>
+            <param name="html"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory">
+            <summary>
+            Retrieves an instance of a markdown parser
+            </summary>
+        </member>
+        <member name="F:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory.CurrentParser">
+            <summary>
+            Use a cached instance of the Markdown Parser to keep alive
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory.GetParser(System.Boolean,System.Boolean,System.String)">
+            <summary>
+            Retrieves a cached instance of the markdown parser
+            </summary>                
+            <param name="forceLoad">Forces the parser to be reloaded - otherwise previously loaded instance is used</param>
+            <param name="usePragmaLines">If true adds pragma line ids into the document that the editor can sync to</param>
+            <param name="parserAddinId">optional addin id that checks for a registered Markdown parser</param>
+            <returns>Mardown Parser Interface</returns>
+        </member>
+        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig">
+            <summary>
+            Wrapper around the CommonMark.NET parser that provides a cached
+            instance of the Markdown parser. Hooks up custom processing.
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.Parse(System.String)">
+            <summary>
+            Parses the actual markdown down to html
+            </summary>
+            <param name="markdown"></param>
+            <returns></returns>        
+        </member>
+    </members>
+</doc>
