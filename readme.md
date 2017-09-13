@@ -124,9 +124,10 @@ If you'd like to highlight your code snippets with syntax highlighting I recomme
 </script>
 ```
 
+---
+
 <div style="margin-top: 30px;font-size: 0.8em;
             border-top: 1px solid #eee;padding-top: 8px;">
-    <hr/>
     <img src="https://markdownmonster.west-wind.com/favicon.png"
          style="height: 20px;float: left; margin-right: 10px;" height="20" width="20" />
     this post created and published with 
