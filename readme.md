@@ -85,7 +85,7 @@ This property is true by default and if the control starts with a line that is i
 
 Notice the indentation of the markdown. If not normalized the entire markdown block would render as code (more than 4 white space characters which is a code block). When NormalizeWhiteSpace is true the leading space is stripped of the entire block.
 
-> #### @icon-info-circle First Line Determines Whitespace to strip
+> #### First Line Determines Whitespace to strip
 > The first line of the Markdown block determines what white space is stripped from all other lines.
 
 Note the default is `True` - if you have funky behavior due to indentation I'd recommend you left justify your markdown and set this value to `False`.
@@ -126,6 +126,7 @@ If you'd like to highlight your code snippets with syntax highlighting I recomme
 
 <div style="margin-top: 30px;font-size: 0.8em;
             border-top: 1px solid #eee;padding-top: 8px;">
+    <hr/>
     <img src="https://markdownmonster.west-wind.com/favicon.png"
          style="height: 20px;float: left; margin-right: 10px;" height="20" width="20" />
     this post created and published with 
