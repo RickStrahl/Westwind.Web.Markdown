@@ -20,6 +20,31 @@ Instead you can add a control like this into the page:
 
 And the content will be rendered to HTML at runtime.
 
+You can also render Markdown directly via code:
+
+```cs
+string html = Markdown.Parse("This is **bold Markdown**.");
+```
+
+or
+
+```html
+<%= Markdown.Parse("This is **bold Markdown**.") %>
+```
+
+or even this in WebPages or MVC:
+
+```html
+@Markdown.ParseHtml("This is **bold Markdown**.")
+```
+
+### Get it from NuGet
+To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.MarkdownControl/):
+
+```ps
+PS> install-package Westwind.Web.MarkdownControl
+```
+
 ### Features
 The control provides these features:
 
@@ -64,9 +89,6 @@ Then embed the control into the page where you want the markdown to appear:
     [Web Site](https://markdownmonster.west-wind.com)
 </ww:Markdown>
 ```
-
-
-
 
 #### NormalizeWhiteSpace
 This property is true by default and if the control starts with a line that is indented it will strip the same indentation from all lines following. This allows text like this to render properly as Markdown:
@@ -118,6 +140,15 @@ You can also embed Markdown into pages like this:
 <div class="container" id="ChangeLogText">
     <%= Markdown.Parse(Model.ChangelogMarkdownText) %>
 </div>    
+```
+
+or in WebPages or MVC:
+
+
+```html
+<div class="well well-sm">
+    @Markdown.ParseHtml("This is **bold Markdown**.")
+</div>
 ```
 
 ### Adding Code Highlighting
