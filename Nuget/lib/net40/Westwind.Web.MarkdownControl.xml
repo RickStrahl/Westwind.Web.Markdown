@@ -9,6 +9,22 @@
             An ASP.NET Server control that renders the embedded text as Markdown.
             </summary>
         </member>
+        <member name="P:Westwind.Web.MarkdownControl.Markdown.NormalizeWhiteSpace">
+            <summary>
+            Tries to strip whitespace before all lines based on the whitespace applied on the first line.
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.MarkdownControl.Markdown.SanitizeHtml">
+            <summary>
+            Strips scriptable tags and attributes. Minimal implementation.
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.Render(System.Web.UI.HtmlTextWriter)">
+            <summary>
+            Overrides the HTML rendering of content
+            </summary>
+            <param name="writer"></param>
+        </member>
         <member name="M:Westwind.Web.MarkdownControl.Markdown.GetLines(System.String,System.Int32)">
             <summary>
             Parses a string into an array of lines broken
@@ -18,29 +34,32 @@
             <param name="maxLines">Optional - max number of lines to return</param>
             <returns>array of strings, or null if the string passed was a null</returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.Parse(System.String,System.Boolean,System.Boolean)">
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.Parse(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Renders raw markdown from string to HTML
             </summary>
-            <param name="markdown"></param>
-            <param name="usePragmaLines"></param>
-            <param name="forceReload"></param>
+            <param name="markdown">Markdown to Render</param>
+            <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+            <param name="forceReload">Forces the parser to be reloaded completely rather than using a cached instance</param>
+            <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean)">
+        <member name="M:Westwind.Web.MarkdownControl.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Renders raw Markdown from string to HTML.
             </summary>
-            <param name="markdown"></param>
-            <param name="usePragmaLines"></param>
-            <param name="forceReload"></param>
+            <param name="markdown">Markdown to render</param>
+            <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+            <param name="forceReload">Forces the parser to reloaded. Otherwise cached instance is used</param>
+            <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.IMarkdownParser.Parse(System.String)">
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.IMarkdownParser.Parse(System.String,System.Boolean)">
             <summary>
             Returns parsed markdown
             </summary>
             <param name="markdown"></param>
+            <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>
         </member>
         <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase">
@@ -49,11 +68,12 @@
             that can be called by the specific implementations.
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.Parse(System.String)">
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.Parse(System.String,System.Boolean)">
             <summary>
             Parses markdown
             </summary>
             <param name="markdown"></param>
+            <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>
         </member>
         <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseStrikeout(System.String)">
@@ -70,7 +90,7 @@
             <param name="markdown"></param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseScript(System.String)">
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.SanitizeHtml(System.String)">
             <summary>
             Parses out script tags that might not be encoded yet
             </summary>
@@ -117,12 +137,33 @@
             instance of the Markdown parser. Hooks up custom processing.
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.Parse(System.String)">
+        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.Parse(System.String,System.Boolean)">
             <summary>
             Parses the actual markdown down to html
             </summary>
-            <param name="markdown"></param>
+            <param name="markdown">Markdown to parse</param>
+            <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>        
+        </member>
+        <member name="T:Westwind.Web.Markdown.Utilities.MarkdownUtils">
+            <summary>
+            String utility class that provides a host of string related operations
+            
+            Extracted from: westwind.utilitie
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.Markdown.Utilities.MarkdownUtils.SanitizeHtml(System.String,System.String)">
+            <summary>
+            Sanitizes HTML to some of the most of 
+            </summary>
+            <remarks>
+            This provides rudimentary HTML sanitation catching the most obvious
+            XSS script attack vectors. For mroe complete HTML Sanitation please look into
+            a dedicated HTML Sanitizer.
+            </remarks>
+            <param name="html">input html</param>
+            <param name="htmlTagBlacklist">A list of HTML tags that are stripped.</param>
+            <returns>Sanitized HTML</returns>
         </member>
     </members>
 </doc>
