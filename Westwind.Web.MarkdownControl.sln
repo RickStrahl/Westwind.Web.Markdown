@@ -30,7 +30,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSample", "WebSample\", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{325DEAED-F18E-412F-91BD-D61A55A76FEF}"
 	ProjectSection(SolutionItems) = preProject
+		Changelog.md = Changelog.md
 		readme.md = readme.md
+		Nuget\Westwind.Web.MarkdownControl.nuspec = Nuget\Westwind.Web.MarkdownControl.nuspec
 	EndProjectSection
 EndProject
 Global

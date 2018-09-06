@@ -1,4 +1,7 @@
-﻿namespace Westwind.Web.MarkdownControl.MarkdownParser
+﻿using System.Runtime.InteropServices.ComTypes;
+using Markdig;
+
+namespace Westwind.Web.MarkdownControl.MarkdownParser
 {
     /// <summary>
     /// Retrieves an instance of a markdown parser
@@ -29,7 +32,7 @@
 
             return CurrentParser;
         }
-        
+
         
     }
 

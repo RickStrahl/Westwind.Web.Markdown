@@ -1,7 +1,9 @@
 # Westwind.Web.MarkdownControl
 #### A basic Markdown content rendering control for ASP.NET Web Forms
 
-This simple project provides an ASP.NET Web Forms Server control that allows you to embed Markdown as literal text into a page and expand it as the page renders. This is useful for content pages that contain lots of text and when you don't want to write out HTML in these pages. 
+This simple project provides an ASP.NET Web Forms Server control and simple static Markdown Parser function that allow you to embed Markdown as literal text into a page and expand it as the page renders. This is useful for content pages that contain lots of text and when you don't want to write out HTML in these pages. 
+
+### Markdown Control
 
 Instead you can add a control like this into the page:
 
@@ -19,6 +21,8 @@ Instead you can add a control like this into the page:
 ```
 
 And the content will be rendered to HTML at runtime.
+
+### Static Markdown Parsing Functions
 
 You can also render Markdown directly via code:
 
@@ -38,7 +42,7 @@ or even this in WebPages or MVC:
 @Markdown.ParseHtml("This is **bold Markdown**.")
 ```
 
-### Get it from NuGet
+## Get it from NuGet
 To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.MarkdownControl/):
 
 ```ps
@@ -50,7 +54,7 @@ The control provides these features:
 
 * ASP.NET Server Control `<ww:Markdown></ww:Markdown>`
 * Ability to normalize leading spacing
-* Includes a static method to parse Markdown
+* Static methods to parse Markdown: `Markdown.Parse()` and `Markdown.ParseHtml()`
 * Uses the awesome [MarkDig Markdown parser](https://github.com/lunet-io/markdig) to parse Markdown
 
 ### Control Usage and Syntax
@@ -161,6 +165,44 @@ or in WebPages or MVC:
 
 #### sanitizeHtml Parameter
 By default the Parse method applies HTML sanitation via a `sanitzeHtml` parameter, which defaults to `true`. If you would like to get the raw unsanitized HTML returned or you want to do your own HTML Sanitation post parsing, set `sanitizeHtml: false` in the method call.
+
+
+### Customizing the Markdown Pipeline
+This parser uses the MarkDig Markdown parser which supports creating a custom pipeline. By default the parser is configured with most add-on features enabled. if you want to explicitly customize this list - either to minimize for performance, or for additional features you can override the static `MarkdownParserMarkdig.OnCreateMarkdigPipeline` function during application startup.
+
+When this `Func<bool,MarkdigPipeline>` is set, this function is called instead of the default pipeline build logic.
+
+Call this during application startup since the parser gets cached after first access. A good place as part of `Application_Init` processing:
+
+```cs
+void Application_Start(object sender, EventArgs e)
+{
+    // OPTIONAL - override parser pipeline addins
+    MarkdownParserMarkdig.OnCreateMarkdigPipeline = (usePragmaLines) =>
+    {
+        var builder = new Markdig.MarkdownPipelineBuilder()
+            .UseEmphasisExtras()                
+            .UsePipeTables()
+            .UseGridTables()
+            .UseAutoLinks() // URLs are parsed into anchors
+            .UseAutoIdentifiers(AutoIdentifierOptions.GitHub)                
+            .UseYamlFrontMatter()
+            .UseEmojiAndSmiley(true);
+
+        if (usePragmaLines)
+            builder = builder.UsePragmaLines();
+
+        return builder;
+    };
+
+}
+```
+
+Note that the parser is cached so if you change this value anywhere but in startup code, you can explicitly force the parser to refresh with:
+
+```cs
+Markdown.Parse("ok",forceReload: true);
+```
 
 ### Adding Code Highlighting
 If you'd like to highlight your code snippets with syntax highlighting I recommend [Highlight.js](https://highlightjs.org/). Using this easy to use library you can add the following to a page to get syntax coloring for code snippets:

@@ -31,8 +31,10 @@
 */
 #endregion
 
+using System;
 using System.IO;
 using Markdig;
+using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Renderers;
 
 namespace Westwind.Web.MarkdownControl.MarkdownParser
@@ -85,31 +87,42 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
             return html;
         }
 
+        /// <summary>
+        /// Allow interception of the Markdown Pipeline creation for Markdig
+        /// Implement this func that returns a MarkdownPipelineBuilder that's
+        /// configured for your preferences.
+        ///
+        /// bool usePragmaLines  - determines whether line numbers are generated
+        /// </summary>
+        public static Func<bool, MarkdownPipelineBuilder> OnCreateMarkdigPipeline;
+
 
         protected virtual MarkdownPipelineBuilder CreatePipelineBuilder()
         {
-            
+        
+            if (OnCreateMarkdigPipeline != null)
+                return OnCreateMarkdigPipeline(_usePragmaLines);
+
             var builder = new MarkdownPipelineBuilder()
-                .UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Default)
+                .UseEmphasisExtras()
                 .UsePipeTables()
                 .UseGridTables()
                 .UseFooters()
                 .UseFootnotes()
-                .UseCitations();
+                .UseCitations()
+                .UseAutoLinks() // URLs are parsed into anchors
+                .UseAutoIdentifiers(AutoIdentifierOptions.GitHub) // Headers get id="name" 
+                .UseAbbreviations()
+                .UseYamlFrontMatter()
+                .UseEmojiAndSmiley(true)
+                .UseMediaLinks()
+                .UseListExtras()
+                .UseFigures()
+                .UseTaskLists()
+                .UseCustomContainers()
+                .UseGenericAttributes();
 
 
-                builder = builder.UseAutoLinks();
-                builder = builder.UseAutoIdentifiers();
-                builder = builder.UseAbbreviations();
-                builder = builder.UseYamlFrontMatter();
-                builder = builder.UseEmojiAndSmiley(true);
-                builder = builder.UseMediaLinks();
-                builder = builder.UseListExtras();
-                builder = builder.UseFigures();
-                builder = builder.UseTaskLists();
-                //builder = builder.UseSmartyPants();            
-
-            
             if (_usePragmaLines)
                 builder = builder.UsePragmaLines();
 
