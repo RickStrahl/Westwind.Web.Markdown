@@ -126,6 +126,14 @@ If not normalized the entire markdown block would render as code (more than 4 wh
 
 Note the default is `True` - if you have funky behavior due to indentation I'd recommend you left justify your markdown and set this value to `False`.
 
+#### SanitizeHtml
+Markdown is essentially a superset of HTML as you can embed any HTML into Markdown. Markdown itself doesn't have any rules about what HTML can be embedded and it's entirely possible to embed script code inside of markdown.
+
+If you capture Markdown text from users it's important **you treat input Markdown just as you would raw HTML user input**.
+
+To help with this, the Markdown control has a `SanitizeHtml` property which is set to `True` by default, which performs rudimentary script sanitation. It removes `<script>`, `<iframe>`, `<form>` and a few other elements, removes `javascript:` and `data:` attribute content, and removes `onXXX` event handlers from HTML input.
+
+If you rather render your Markdown *as is* set `SantizeHtml` to `False`.
 
 ### Static Markdown Rendering
 The control also includes static Markdown rendering that you can use in your Web Application inside of pages or your Web code.
@@ -151,12 +159,15 @@ or in WebPages or MVC:
 </div>
 ```
 
+#### sanitizeHtml Parameter
+By default the Parse method applies HTML sanitation via a `sanitzeHtml` parameter, which defaults to `true`. If you would like to get the raw unsanitized HTML returned or you want to do your own HTML Sanitation post parsing, set `sanitizeHtml: false` in the method call.
+
 ### Adding Code Highlighting
 If you'd like to highlight your code snippets with syntax highlighting I recommend [Highlight.js](https://highlightjs.org/). Using this easy to use library you can add the following to a page to get syntax coloring for code snippets:
 
 ```html
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/dracula.min.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/dracula.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 
 <script>
     function highlightCode() {

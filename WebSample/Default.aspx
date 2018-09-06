@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-<%@ Register TagPrefix="ww" Namespace="Westwind.Web.MarkdownControl" Assembly="Westwind.Web.MarkdownControl" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" ValidateRequest="false" %>
+<%@ Register TagPrefix="ww" Namespace="Westwind.Web.MarkdownControl" Assembly="Westwind.Web.MarkdownControl"  %>
 
 <!DOCTYPE html>
 
@@ -59,8 +59,6 @@
                 * **Fix: Addin Loading Issue**  
                 Looks like a regression bug slipped through in 1.5.12 that would not allow loading of certain addins (Gist, Pandoc addins specifically).
             </ww:Markdown>
-            
-            
 
             
             <h3 class="header">Markdown Display (non-normalized, has to be left aligned):</h3>
@@ -107,12 +105,30 @@ return PhysicalFile(file, "text/plain");
 ```
             </ww:Markdown>
             
+            
+            <h3 class="header">SanitizeHtml Option</h3>
+            <hr />
+
+            <ww:Markdown runat="server" SanitizeHtml="True">
+                <h5>There's a script hiding below (shouldn't fire alert box on load!)</h5>
+                
+                <script>
+                    alert('GOTCHA! XSS access');
+                </script>
+                
+                <h5>Link with `javascript:` embedded (link shouldn't work):</h5>
+                <a href="javascript:alert('GOTCHA: javascript: code fired')">Click me - I'm not evil</a>
+                
+                <h5>Element with <code>onmouseover</code> (shouldn't activate when you hover over):</h5>                
+                <div class="alert alert-info" style="padding: 20px" onmouseover="alert('GOTCHA: onmouseoverevent fired')">Don't hurt me!</div>                
+
+            </ww:Markdown>
                 
             <h3 class="header">Dynamically assign Markdown:</h3>
             <hr />
                 
             <label class="">Enter some Markdown:</label><br />
-            <asp:TextBox runat="server" ID="EditedMarkdown" TextMode="Multiline" class="form-control" style="height: 200px;">#### Markdown Text
+            <asp:TextBox runat="server" ID="EditedMarkdown" TextMode="Multiline" class="form-control" style="height: 245px;">#### Markdown Text
 Write some markdown text and see if it sticks.
 
 * Lines
@@ -120,10 +136,15 @@ Write some markdown text and see if it sticks.
 * Lines
 
 [created with Markdown Monster](https://markdownmonster.west-wind.com)
+                
+<script>
+    alert("GOTCHA: You shouldn't see this script with SanitizeHtml on");
+</script>
             </asp:TextBox>
             <asp:Button runat="server" ID="btnSubmit" Text="Save" />
             <hr />
-            <%= Markdown.Parse(EditedMarkdown.Text) %>
+
+            <%= Markdown.Parse(EditedMarkdown.Text, sanitizeHtml: true) %>
         
         </div>
         

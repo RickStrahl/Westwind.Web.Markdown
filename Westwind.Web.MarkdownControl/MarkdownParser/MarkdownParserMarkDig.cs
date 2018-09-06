@@ -61,9 +61,10 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
         /// <summary>
         /// Parses the actual markdown down to html
         /// </summary>
-        /// <param name="markdown"></param>
+        /// <param name="markdown">Markdown to parse</param>
+        /// <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
         /// <returns></returns>        
-        public override string Parse(string markdown)
+        public override string Parse(string markdown, bool sanitizeHtml = true)
         {
             if (string.IsNullOrEmpty(markdown))
                 return string.Empty;
@@ -78,7 +79,8 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
             html = ParseFontAwesomeIcons(html);
 
             //if (!mmApp.Configuration.MarkdownOptions.AllowRenderScriptTags)
-            html = ParseScript(html);  
+            if (sanitizeHtml)
+                html = SanitizeHtml(html);  
                       
             return html;
         }
@@ -88,7 +90,7 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
         {
             
             var builder = new MarkdownPipelineBuilder()
-                .UseEmphasisExtras()
+                .UseEmphasisExtras(Markdig.Extensions.EmphasisExtras.EmphasisExtraOptions.Default)
                 .UsePipeTables()
                 .UseGridTables()
                 .UseFooters()
@@ -100,7 +102,7 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
                 builder = builder.UseAutoIdentifiers();
                 builder = builder.UseAbbreviations();
                 builder = builder.UseYamlFrontMatter();
-                builder = builder.UseEmojiAndSmiley();
+                builder = builder.UseEmojiAndSmiley(true);
                 builder = builder.UseMediaLinks();
                 builder = builder.UseListExtras();
                 builder = builder.UseFigures();

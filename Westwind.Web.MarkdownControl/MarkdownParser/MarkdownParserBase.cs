@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Text.RegularExpressions;
+using Westwind.Web.Markdown.Utilities;
 
 namespace Westwind.Web.MarkdownControl.MarkdownParser
 {
@@ -16,15 +17,16 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
         /// Parses markdown
         /// </summary>
         /// <param name="markdown"></param>
+        /// <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
         /// <returns></returns>
-        public abstract string Parse(string markdown);
+        public abstract string Parse(string markdown, bool sanitizeHtml = true);
         
         /// <summary>
         /// Parses strikeout text ~~text~~. Single line (to linebreak) allowed only.
         /// </summary>
         /// <param name="html"></param>
         /// <returns></returns>
-        protected string ParseStrikeout(string html)
+        protected virtual string ParseStrikeout(string html)
         {
             if (html == null)
                 return null;
@@ -51,7 +53,7 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
         /// </summary>
         /// <param name="markdown"></param>
         /// <returns></returns>
-        public string StripFrontMatter(string markdown)
+        protected virtual string StripFrontMatter(string markdown)
         {
             string extractedYaml = null;
             var match = YamlExtractionRegex.Match(markdown);
@@ -69,12 +71,9 @@ namespace Westwind.Web.MarkdownControl.MarkdownParser
         /// </summary>
         /// <param name="html"></param>
         /// <returns></returns>
-        protected string ParseScript(string html)
+        protected virtual string SanitizeHtml(string html)
         {
-            html = html.Replace("<script", "&lt;script");
-            html = html.Replace("</script", "&lt;/script");
-            html = html.Replace("javascript:", "javaScript:");
-            return html;
+            return MarkdownUtils.SanitizeHtml(html);
         }
 
 

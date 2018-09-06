@@ -15,14 +15,28 @@ namespace Westwind.Web.MarkdownControl
     /// </summary>
     [DefaultProperty("Text")]
     [ToolboxData("<{0}:Markdown runat=server></{0}:Markdown>")]
-
     public class Markdown : System.Web.UI.WebControls.Literal
     {
-       
+
+        /// <summary>
+        /// Tries to strip whitespace before all lines based on the whitespace applied on the first line.
+        /// </summary>
         [Description("Tries to strip whitespace before all lines based on the whitespace applied on the first line.")]
         [Category("Markdown")]
         public bool NormalizeWhiteSpace { get; set; } = true;
-        
+
+        /// <summary>
+        /// Strips scriptable tags and attributes. Minimal implementation.
+        /// </summary>
+        [Description("Strips scriptable tags and attributes. Minimal implementation.")]
+        [Category("Markdown")]
+
+        public bool SanitizeHtml { get; set; } = true;
+
+        /// <summary>
+        /// Overrides the HTML rendering of content
+        /// </summary>
+        /// <param name="writer"></param>
         protected override void Render(HtmlTextWriter writer)
         {
             if (string.IsNullOrEmpty(Text))
@@ -31,11 +45,11 @@ namespace Westwind.Web.MarkdownControl
             string markdown = NormalizeWhiteSpaceText(Text);
 
             var parser = MarkdownParserFactory.GetParser(false, false);
-            var html = parser.Parse(markdown);
+            var html = parser.Parse(markdown,SanitizeHtml);
             writer.Write(html);
         }
 
-        string NormalizeWhiteSpaceText(string text)
+        private string NormalizeWhiteSpaceText(string text)
         {
             if (!NormalizeWhiteSpace || string.IsNullOrEmpty(text))
                 return text;
@@ -56,18 +70,19 @@ namespace Westwind.Web.MarkdownControl
 
             if (string.IsNullOrEmpty(line1))
                 return text;
-            
+
             string trimLine = line1.TrimStart();
             int whitespaceCount = line1.Length - trimLine.Length;
             if (whitespaceCount == 0)
                 return text;
-            string whitespace = line1.Substring(0, whitespaceCount);
-
 
             StringBuilder sb = new StringBuilder();
             for (int i = 0; i < lines.Length; i++)
             {
-                sb.AppendLine(lines[i].Replace(whitespace, ""));
+                if (lines[i].Length > whitespaceCount)
+                    sb.AppendLine(lines[i].Substring(whitespaceCount));
+                else
+                    sb.AppendLine(lines[i]);
             }
 
             return sb.ToString();
@@ -101,29 +116,31 @@ namespace Westwind.Web.MarkdownControl
         /// <summary>
         /// Renders raw markdown from string to HTML
         /// </summary>
-        /// <param name="markdown"></param>
-        /// <param name="usePragmaLines"></param>
-        /// <param name="forceReload"></param>
+        /// <param name="markdown">Markdown to Render</param>
+        /// <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+        /// <param name="forceReload">Forces the parser to be reloaded completely rather than using a cached instance</param>
+        /// <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
         /// <returns></returns>
-        public static string Parse(string markdown, bool usePragmaLines = false, bool forceReload = false)
+        public static string Parse(string markdown, bool usePragmaLines = false, bool forceReload = false, bool sanitizeHtml = true)
         {
             if (string.IsNullOrEmpty(markdown))
                 return "";
 
             var parser = MarkdownParserFactory.GetParser(usePragmaLines, forceReload);
-            return parser.Parse(markdown);
+            return parser.Parse(markdown,sanitizeHtml);
         }
 
         /// <summary>
         /// Renders raw Markdown from string to HTML.
         /// </summary>
-        /// <param name="markdown"></param>
-        /// <param name="usePragmaLines"></param>
-        /// <param name="forceReload"></param>
+        /// <param name="markdown">Markdown to render</param>
+        /// <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+        /// <param name="forceReload">Forces the parser to reloaded. Otherwise cached instance is used</param>
+        /// <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
         /// <returns></returns>
-        public static HtmlString ParseHtmlString(string markdown, bool usePragmaLines = false, bool forceReload = false)
+        public static HtmlString ParseHtmlString(string markdown, bool usePragmaLines = false, bool forceReload = false, bool sanitizeHtml = true)
         {
-            return new HtmlString(Parse(markdown, usePragmaLines, forceReload));
+            return new HtmlString(Parse(markdown, usePragmaLines, forceReload, sanitizeHtml));
         }
 
         #endregion
