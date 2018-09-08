@@ -5,8 +5,8 @@
         <version>0.2.7</version>
         <title>West Wind Web Markdown Processing</title>
         <authors>Rick Strahl,West Wind Technologies</authors>
-        <licenseUrl>https://github.com/RickStrahl/Westwind.Web.MarkdownControl</licenseUrl>
-        <projectUrl>https://github.com/RickStrahl/Westwind.Web.MarkdownControl</projectUrl>
+        <licenseUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</licenseUrl>
+        <projectUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</projectUrl>
         <iconUrl>https://markdownmonster.west-wind.com/images/markdown_icon.png</iconUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>
