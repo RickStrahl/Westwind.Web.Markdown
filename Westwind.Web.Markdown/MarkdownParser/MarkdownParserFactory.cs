@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices.ComTypes;
 using Markdig;
 
-namespace Westwind.Web.MarkdownControl.MarkdownParser
+namespace Westwind.Web.Markdown.MarkdownParser
 {
     /// <summary>
     /// Retrieves an instance of a markdown parser

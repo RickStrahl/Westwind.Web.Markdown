@@ -1,7 +1,8 @@
 ﻿<%@ Application Language="C#" %>
 <%@ Import Namespace="Markdig" %>
 <%@ Import Namespace="Markdig.Extensions.AutoIdentifiers" %>
-<%@ Import Namespace="Westwind.Web.MarkdownControl.MarkdownParser" %>
+<%@ Import Namespace="Westwind.Web.Markdown.MarkdownParser" %>
+
 
 <script runat="server">
 

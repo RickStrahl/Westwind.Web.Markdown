@@ -2,7 +2,7 @@
 using System.Text.RegularExpressions;
 using Westwind.Web.Markdown.Utilities;
 
-namespace Westwind.Web.MarkdownControl.MarkdownParser
+namespace Westwind.Web.Markdown.MarkdownParser
 {
     /// <summary>
     /// Base class that includes various fix up methods for custom parsing

@@ -1,4 +1,4 @@
-﻿namespace Westwind.Web.MarkdownControl.MarkdownParser
+﻿namespace Westwind.Web.Markdown.MarkdownParser
 {
     public interface IMarkdownParser
     {

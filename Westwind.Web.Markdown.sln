@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Westwind.Web.MarkdownControl", "Westwind.Web.MarkdownControl\Westwind.Web.MarkdownControl.csproj", "{5BA3E69D-59B6-4FF1-952F-62A6B076A6C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Westwind.Web.Markdown", "Westwind.Web.Markdown\Westwind.Web.Markdown.csproj", "{5BA3E69D-59B6-4FF1-952F-62A6B076A6C0}"
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebSample", "WebSample\", "{D1752E9D-2DF3-4991-BEB6-B2A1BEC8918D}"
 	ProjectSection(WebsiteProperties) = preProject

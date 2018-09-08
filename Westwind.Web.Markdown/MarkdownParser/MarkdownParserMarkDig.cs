@@ -37,7 +37,7 @@ using Markdig;
 using Markdig.Extensions.AutoIdentifiers;
 using Markdig.Renderers;
 
-namespace Westwind.Web.MarkdownControl.MarkdownParser
+namespace Westwind.Web.Markdown.MarkdownParser
 {
 
     /// <summary>

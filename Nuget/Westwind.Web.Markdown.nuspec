@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata minClientVersion="2.25">
-        <id>Westwind.Web.MarkdownControl</id>
+        <id>Westwind.Web.Markdown</id>
         <version>0.2.5</version>
         <title>West Wind Web Markdown Processing</title>
         <authors>Rick Strahl,West Wind Technologies</authors>

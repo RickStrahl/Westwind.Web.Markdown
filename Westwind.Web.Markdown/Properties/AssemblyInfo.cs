@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Westwind.Web.MarkdownControl")]
+[assembly: AssemblyTitle("Westwind.Web.Markdown")]
 [assembly: AssemblyDescription("An ASP.NET Web Forms server control to render literal Markdown text")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("West Wind Technologies")]
-[assembly: AssemblyProduct("Westwind.Web.MarkdownControl")]
+[assembly: AssemblyProduct("Westwind.Web.Markdown")]
 [assembly: AssemblyCopyright("© Rick Strahl - West Wind Technologies, 2017-2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

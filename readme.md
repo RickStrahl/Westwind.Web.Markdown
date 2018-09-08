@@ -1,11 +1,42 @@
-# Westwind.Web.MarkdownControl
-#### A basic Markdown content rendering control for ASP.NET Web Forms
+# Westwind.Web.Markdown
+#### Markdown Support for your System.Web MVC and WebForms applications
 
-This simple project provides an ASP.NET Web Forms Server control and simple static Markdown Parser function that allow you to embed Markdown as literal text into a page and expand it as the page renders. This is useful for content pages that contain lots of text and when you don't want to write out HTML in these pages. 
+This library provides:
 
-### Markdown Control
+* **Markdown Parser Functions**  
+Simple Markdown Parsing with `Markdown.Parse()` and `Markdown.ParseHtml()` methods you can use in code or in your MVC or WebForms markup.
 
-Instead you can add a control like this into the page:
+* **Markdown Web Control**  
+A useful `<markdown>` server WebControl for easily embedding static Markdown text or data-bound Markdown into a document. Great for using Markdown for static content inside of larger Web Pages.
+
+* **Uses the the awesome Markdig Parser**  
+This library relies on the [Markdig](https://github.com/lunet-io/markdig) Markdown Parser and provides access to all Markdown Pipeline configuration options of that parser via a configuration hook.
+
+* **Optional Html Script Sanitation**  
+Both the parsers and Web Control have options to sanitize HTML to avoid common XSS attacks.
+
+## Static Markdown Parsing Functions
+For direct Markdown parsing you can use this library for rendering Markdown to HTML as strings or `HtmlString` values for MVC.
+
+```cs
+string html = Markdown.Parse("This is **bold Markdown**.");
+```
+
+or
+
+```html
+<%= Markdown.Parse("This is **bold Markdown**.") %>
+```
+
+or even this in WebPages or MVC:
+
+```cs
+@Markdown.ParseHtml("This is **bold Markdown**.")
+```
+
+
+## Markdown Control
+The Web Control provides you the abililty to easily embed static Markdown text into any Web Forms page.
 
 ```html
 <ww:Markdown runat="server" id="md1">
@@ -22,49 +53,22 @@ Instead you can add a control like this into the page:
 
 And the content will be rendered to HTML at runtime.
 
-### Static Markdown Parsing Functions
-
-You can also render Markdown directly via code:
-
-```cs
-string html = Markdown.Parse("This is **bold Markdown**.");
-```
-
-or
-
-```html
-<%= Markdown.Parse("This is **bold Markdown**.") %>
-```
-
-or even this in WebPages or MVC:
-
-```html
-@Markdown.ParseHtml("This is **bold Markdown**.")
-```
 
 ## Get it from NuGet
-To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.MarkdownControl/):
+To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.Markdown/):
 
 ```ps
-PS> install-package Westwind.Web.MarkdownControl
+PS> install-package Westwind.Web.Markdown
 ```
 
-### Features
-The control provides these features:
-
-* ASP.NET Server Control `<ww:Markdown></ww:Markdown>`
-* Ability to normalize leading spacing
-* Static methods to parse Markdown: `Markdown.Parse()` and `Markdown.ParseHtml()`
-* Uses the awesome [MarkDig Markdown parser](https://github.com/lunet-io/markdig) to parse Markdown
-
-### Control Usage and Syntax
+## Control Usage and Syntax
 To use the control add it to your page like any other server control.
 
 First add a reference to the control assembly either on the page or in Web.config:
 
 At the top of the page:
 ```html
-<%@ Register TagPrefix="ww" Namespace="Westwind.Web.MarkdownControl" Assembly="Westwind.Web.MarkdownControl" %>
+<%@ Register TagPrefix="ww" Namespace="Westwind.Web.Markdown" Assembly="Westwind.Web.Markdown" %>
 ```
 
 or in `web.config` globally:
@@ -74,8 +78,8 @@ or in `web.config` globally:
     <system.web>
         <pages>
             <controls>
-                <add assembly="Westwind.Web.MarkdownControl" 
-                     namespace="Westwind.Web.MarkdownControl" 
+                <add assembly="Westwind.Web.Markdown" 
+                     namespace="Westwind.Web.Markdown" 
                      tagPrefix="ww" />
             </controls>
         </pages>
@@ -86,7 +90,9 @@ or in `web.config` globally:
 Then embed the control into the page where you want the markdown to appear:
 
 ```xml
-<ww:Markdown runat="server" id="md2" NormalizeWhiteSpace="True">
+<ww:Markdown runat="server" id="md2" 
+             NormalizeWhiteSpace="True"
+             SanitizeHtml="True">
     # Markdown Monster Change Log 
     [download latest version](https://markdownmonster.west-wind.com/download.aspx) &bull; 
     [install from Chocolatey](https://chocolatey.org/packages/MarkdownMonster) &bull; 
@@ -135,10 +141,31 @@ Markdown is essentially a superset of HTML as you can embed any HTML into Markdo
 
 If you capture Markdown text from users it's important **you treat input Markdown just as you would raw HTML user input**.
 
-To help with this, the Markdown control has a `SanitizeHtml` property which is set to `True` by default, which performs rudimentary script sanitation. It removes `<script>`, `<iframe>`, `<form>` and a few other elements, removes `javascript:` and `data:` attribute content, and removes `onXXX` event handlers from HTML input.
+To help with this, the Markdown control has a `SanitizeHtml` property which is **set to `True` by default**, which performs rudimentary script sanitation. It removes `<script>`, `<iframe>`, `<form>` and a few other elements, removes `javascript:` and `data:` attribute content, and removes `onXXX` event handlers from HTML input.
 
-If you rather render your Markdown *as is* set `SantizeHtml` to `False`.
+If you rather render your Markdown *as is* set `SantizeHtml` to `False`. To see what that looks like you can try the following in your Markdown block:
 
+
+```html
+<markdown runat="server" id="mm1" 
+          SanitizeHtml="False">
+	
+	### Links:
+	[Please don't hurt me](javascript:alert('clicked!');)
+	
+	### Script Blocks
+	<script>alert('this will show!');</script>
+	
+	<div onmouseover="alert('That really hurts!')"
+	     style="opacity: 0; padding: 20px;">
+		A hidden menace in Venice
+	</div>
+</markdown>
+```
+
+Both `Markdown.Parse()` and `Markdown.ParseHtml()` also have a sanitizeHtml parameter that is `true` by default.
+
+If you render static text you control then `SanitizeHtml=False` is usually Ok, but if you take user input and put into the browser to display, **always use `SanitizeHtml=True`**.
 ### Static Markdown Rendering
 The control also includes static Markdown rendering that you can use in your Web Application inside of pages or your Web code.
 
@@ -166,8 +193,23 @@ or in WebPages or MVC:
 #### sanitizeHtml Parameter
 By default the Parse method applies HTML sanitation via a `sanitzeHtml` parameter, which defaults to `true`. If you would like to get the raw unsanitized HTML returned or you want to do your own HTML Sanitation post parsing, set `sanitizeHtml: false` in the method call.
 
+For code you know is safe:
 
-### Customizing the Markdown Pipeline
+```cs
+string html = Markdown.Parse(staticMarkdown,sanitizeHtml: false);
+```
+
+For user input that you echo back to the screen:
+
+```cs
+// true is the default but it's good to be explicit!
+string html = Markdown.Parse(staticMarkdown, sanitizeHtml: true);
+```
+
+> #### Important
+> Always treat user entered Markdown as you would raw HTML!
+
+## Customizing the Markdown Pipeline
 This parser uses the MarkDig Markdown parser which supports creating a custom pipeline. By default the parser is configured with most add-on features enabled. if you want to explicitly customize this list - either to minimize for performance, or for additional features you can override the static `MarkdownParserMarkdig.OnCreateMarkdigPipeline` function during application startup.
 
 When this `Func<bool,MarkdigPipeline>` is set, this function is called instead of the default pipeline build logic.
