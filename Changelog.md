@@ -1,5 +1,11 @@
 # Westwind.Web.Markdown Changelog
 
+## Version 0.2.6
+*September 7th, 2018*
+
+* **Renamed to Westwind.Web.Markdown**  
+Renamed project to indicate wider Markdown feature scope than just the Markdown control.
+
 
 ## Version 0.2.5
 *September 7th, 2018*
