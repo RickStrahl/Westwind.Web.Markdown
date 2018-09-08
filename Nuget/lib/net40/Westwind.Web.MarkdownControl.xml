@@ -145,6 +145,15 @@
             <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>        
         </member>
+        <member name="F:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.OnCreateMarkdigPipeline">
+             <summary>
+             Allow interception of the Markdown Pipeline creation for Markdig
+             Implement this func that returns a MarkdownPipelineBuilder that's
+             configured for your preferences.
+            
+             bool usePragmaLines  - determines whether line numbers are generated
+             </summary>
+        </member>
         <member name="T:Westwind.Web.Markdown.Utilities.MarkdownUtils">
             <summary>
             String utility class that provides a host of string related operations

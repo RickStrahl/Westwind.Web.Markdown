@@ -223,9 +223,21 @@ If you'd like to highlight your code snippets with syntax highlighting I recomme
 ```
 
 ## License
-The Westwind.Web.MarkdownControl library is an open source product licensed under **[MIT license](http://opensource.org/licenses/MIT)**, and there's no charge to use, integrate or modify the code for this project. You are free to use it in personal, commercial, government and any other type of application. Commercial licenses are also available.
+The Westwind.Web.MarkdownControl library is an open source product licensed under:
 
-All source code is copyright West Wind Technologies, regardless of changes made to them. Any source code modifications must leave the original copyright code headers intact.
+* **[MIT license](http://opensource.org/licenses/MIT)**
+
+All source code is **&copy; West Wind Technologies**, regardless of changes made to them. Any source code modifications must leave the original copyright code headers intact if present.
+
+There's no charge to use, integrate or modify the code for this project. You are free to use it in personal, commercial, government and any other type of application and you are free to modify the code for use in your own projects.
+
+### Give back
+If you find this library useful, consider making a small donation:
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3RZRUFCWD24R4" 
+    title="Find this library useful? Consider making a small donation." alt="Make Donation" style="text-decoration: none;">
+	<img src="https://weblog.west-wind.com/images/donation.png" />
+</a>
 
 ## Acknowledgements
 This library uses the following excellent components:
