@@ -1,12 +1,21 @@
 # Westwind.Web.Markdown
-#### Markdown Support for your System.Web MVC and WebForms applications
+#### Markdown Support for your System.Web based ASP.NET WebForms and MVC applications
 
+
+## Get it from NuGet
+To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.Markdown/):
+
+```ps
+PS> install-package Westwind.Web.Markdown
+```
+
+## Features
 This library provides:
 
 * **Markdown Parser Functions**  
 Simple Markdown Parsing with `Markdown.Parse()` and `Markdown.ParseHtml()` methods you can use in code or in your MVC or WebForms markup.
 
-* **Markdown Web Control for 'Markdown Islands'**  
+* **Markdown WebForms Control for 'Markdown Islands'**  
 A useful `<markdown>` server WebControl for easily embedding static Markdown text or data-bound Markdown into a document. Great for using Markdown for static content inside of larger Web Pages.
 
 * **Serve Markdown Pages from Disk using MarkdownHttpHandler**  
@@ -56,13 +65,6 @@ The Web Control provides you the abililty to easily embed static Markdown text i
 
 And the content will be rendered to HTML at runtime.
 
-
-## Get it from NuGet
-To use the control you can install from [Nuget](https://www.nuget.org/packages/Westwind.Web.Markdown/):
-
-```ps
-PS> install-package Westwind.Web.Markdown
-```
 
 ## Control Usage and Syntax
 To use the control add it to your page like any other server control.
