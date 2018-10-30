@@ -216,17 +216,17 @@ string html = Markdown.Parse(staticMarkdown, sanitizeHtml: true);
 
 
 ## Markdown Page Handler
-The Markdown HTTP Handler allows you to simply drop Markdown files into an ASP.NET Web site and get those pages served as HTML. You can provide a template to provide the site's chrome around the rendered and access a 'model' that contains the title, the rendered Markdown,  original Markdown and a few other things to render into your template.
+The Markdown HTTP Handler allows you to simply drop Markdown files into an ASP.NET Web site and get those pages served as HTML. You can provide a template to provide the site's chrome around the rendered and access a 'model' that contains the title, the rendered Markdown,  original Markdown and a few other things to render into your template. The 'template' is simply an endpoint in your System.Web based application, so it can point at either a **WebForms Page** or an **MVC Controller/View Endpoint**.
 
-This feature works with WebForms or MVC based applications.
+### Setting up the Markdown Page Handler
+To set up the handler you need to:
 
-To do this you need to:
-
-* Add a reference to Westwind.Web.Markdown Nuget
+* Add a reference to Westwind.Web.Markdown Nuget package
 * Add a Handler mapping of `.md` to `MarkdownHttpHandler`
-* Set up a 'template' HTML page or View
-* Use `Context.Items[MarkdownHttpHandler.ItemKey] to retrieve a model
+* Set up a 'template' HTML page or Controller/View
+* Use `Context.Items[MarkdownHttpHandler.ItemKey] to retrieve the model
 * Embed `Model.RenderedMarkdownHtml` into the template
+* Drop some `.md` files anywhere in your site
 
 ### Add an HttpHandler Mapping
 In order for IIS and ASP.NET to process `.md` (or whatever other extensions you choose) files, the extension has to be registered in `web.config`.
