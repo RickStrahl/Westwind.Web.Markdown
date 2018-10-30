@@ -278,7 +278,9 @@ The model's properties available look like this:
 | PhysicalPath     | The physical path of the original Markdown File requested |
 
 
-Most likely the only values you'll be interested in are `RenderedMarkdown` and the `Title`. You'll want to the title
+Most likely the only values you'll be interested in are `RenderedMarkdown` and the `Title`. You'll want to use the title for the title in the `<head>` of the page at least, and perhaps also in some sort of non-content page header.
+
+Here's what the simplest possible templates look like for Web Forms and MVC:
 
 #### WebForms
 
@@ -331,6 +333,8 @@ Then inside of the Razor view you can utilize the model as needed:
 ```
 
 > If you need to pass other items into the view like authentication or login data required in your site chrome, you can just create a custom view that includes theMarkdownModel data. I left this in raw form from the `Context.Items` collection to allow this to work in just about any `System.Web` based solution. 
+
+Templates most likely will be very simple and only embed the content and title. All the rest of the page chrome is likely to be picked up by Master or Layout pages.
 
 ### Dropping Files into your Site
 At this point you can just drop `.md` files into your site. The files should be routed to the `MarkdownHttpHandler` which in turn renders the Markdown to HTML and calls your template with the `Context.Items` item that contains the model, which is then rendered by your customized template.
