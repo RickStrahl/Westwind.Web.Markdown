@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata minClientVersion="2.25">
         <id>Westwind.Web.Markdown</id>
-        <version>0.2.7</version>
+        <version>0.2.8</version>
         <title>West Wind Web Markdown Processing</title>
         <authors>Rick Strahl,West Wind Technologies</authors>
         <licenseUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</licenseUrl>
@@ -16,6 +16,7 @@
 
           * Markdown.Parse(), Markdown.ParseHtml()  methods
           * A Markdown Control for static Markdown text or dynamic assignment
+          * Can render loose Markdown files using a customizable template
           * Supports HTML Sanitation 
           * Supports White Space handling for Markdown text
           * Customization of Markdown Parser

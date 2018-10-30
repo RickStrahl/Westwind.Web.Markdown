@@ -1,31 +1,31 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Westwind.Web.MarkdownControl</name>
+        <name>Westwind.Web.Markdown</name>
     </assembly>
     <members>
-        <member name="T:Westwind.Web.MarkdownControl.Markdown">
+        <member name="T:Westwind.Web.Markdown.Markdown">
             <summary>
             An ASP.NET Server control that renders the embedded text as Markdown.
             </summary>
         </member>
-        <member name="P:Westwind.Web.MarkdownControl.Markdown.NormalizeWhiteSpace">
+        <member name="P:Westwind.Web.Markdown.Markdown.NormalizeWhiteSpace">
             <summary>
             Tries to strip whitespace before all lines based on the whitespace applied on the first line.
             </summary>
         </member>
-        <member name="P:Westwind.Web.MarkdownControl.Markdown.SanitizeHtml">
+        <member name="P:Westwind.Web.Markdown.Markdown.SanitizeHtml">
             <summary>
             Strips scriptable tags and attributes. Minimal implementation.
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.Render(System.Web.UI.HtmlTextWriter)">
+        <member name="M:Westwind.Web.Markdown.Markdown.Render(System.Web.UI.HtmlTextWriter)">
             <summary>
             Overrides the HTML rendering of content
             </summary>
             <param name="writer"></param>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.GetLines(System.String,System.Int32)">
+        <member name="M:Westwind.Web.Markdown.Markdown.GetLines(System.String,System.Int32)">
             <summary>
             Parses a string into an array of lines broken
             by \r\n or \n
@@ -34,7 +34,7 @@
             <param name="maxLines">Optional - max number of lines to return</param>
             <returns>array of strings, or null if the string passed was a null</returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.Parse(System.String,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Westwind.Web.Markdown.Markdown.Parse(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Renders raw markdown from string to HTML
             </summary>
@@ -44,7 +44,7 @@
             <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Westwind.Web.Markdown.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Renders raw Markdown from string to HTML.
             </summary>
@@ -54,7 +54,57 @@
             <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.IMarkdownParser.Parse(System.String,System.Boolean)">
+        <member name="F:Westwind.Web.Markdown.MarkdownHttpHandler.ModelKey">
+            <summary>
+            The key used to store the value in the Items Collection
+            </summary>
+        </member>
+        <member name="F:Westwind.Web.Markdown.MarkdownHttpHandler.Configuration">
+            <summary>
+            Configuration settings for the Markdown Handler
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.Markdown.MarkdownHttpHandler.ParseMarkdownToModel(System.String,Westwind.Web.Markdown.MarkdownModel)">
+            <summary>
+            Parses the markdown for a title, renders to HTML and returns a model that
+            contains the relevant items.
+            </summary>
+            <param name="markdown"></param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.Title">
+            <summary>
+            Title extracted from the document. Title source is
+            either a YAML title attribute or the first # element
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.RenderedMarkdown">
+            <summary>
+            HTML output from the rendered markdown text
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.RawMarkdown">
+            <summary>
+            The raw Markdown Document text. May include a Yaml header
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.YamlHeader">
+            <summary>
+            If there is a Yaml header on the document it's available here
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.RelativePath">
+            <summary>
+            Relative Path of the Markdown File served
+            </summary>
+        </member>
+        <member name="P:Westwind.Web.Markdown.MarkdownModel.PhysicalPath">
+            <summary>
+            Relative Path of the Markdown File served
+            </summary>
+        </member>
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.IMarkdownParser.Parse(System.String,System.Boolean)">
             <summary>
             Returns parsed markdown
             </summary>
@@ -62,13 +112,13 @@
             <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>
         </member>
-        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase">
+        <member name="T:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase">
             <summary>
             Base class that includes various fix up methods for custom parsing
             that can be called by the specific implementations.
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.Parse(System.String,System.Boolean)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.Parse(System.String,System.Boolean)">
             <summary>
             Parses markdown
             </summary>
@@ -76,28 +126,28 @@
             <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseStrikeout(System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.ParseStrikeout(System.String)">
             <summary>
             Parses strikeout text ~~text~~. Single line (to linebreak) allowed only.
             </summary>
             <param name="html"></param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.StripFrontMatter(System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.StripFrontMatter(System.String)">
             <summary>
             Strips 
             </summary>
             <param name="markdown"></param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.SanitizeHtml(System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.SanitizeHtml(System.String)">
             <summary>
             Parses out script tags that might not be encoded yet
             </summary>
             <param name="html"></param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseFontAwesomeIcons(System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.ParseFontAwesomeIcons(System.String)">
             <summary>
             Post processing routine that post-processes the HTML and 
             replaces @icon- with fontawesome icons
@@ -105,24 +155,24 @@
             <param name="html"></param>
             <returns></returns>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserBase.ParseExternalLinks(System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserBase.ParseExternalLinks(System.String)">
             <summary>
             Replaces all links with target="top" links
             </summary>
             <param name="html"></param>
             <returns></returns>
         </member>
-        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory">
+        <member name="T:Westwind.Web.Markdown.MarkdownParser.MarkdownParserFactory">
             <summary>
             Retrieves an instance of a markdown parser
             </summary>
         </member>
-        <member name="F:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory.CurrentParser">
+        <member name="F:Westwind.Web.Markdown.MarkdownParser.MarkdownParserFactory.CurrentParser">
             <summary>
             Use a cached instance of the Markdown Parser to keep alive
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserFactory.GetParser(System.Boolean,System.Boolean,System.String)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserFactory.GetParser(System.Boolean,System.Boolean,System.String)">
             <summary>
             Retrieves a cached instance of the markdown parser
             </summary>                
@@ -131,13 +181,13 @@
             <param name="parserAddinId">optional addin id that checks for a registered Markdown parser</param>
             <returns>Mardown Parser Interface</returns>
         </member>
-        <member name="T:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig">
+        <member name="T:Westwind.Web.Markdown.MarkdownParser.MarkdownParserMarkdig">
             <summary>
             Wrapper around the CommonMark.NET parser that provides a cached
             instance of the Markdown parser. Hooks up custom processing.
             </summary>
         </member>
-        <member name="M:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.Parse(System.String,System.Boolean)">
+        <member name="M:Westwind.Web.Markdown.MarkdownParser.MarkdownParserMarkdig.Parse(System.String,System.Boolean)">
             <summary>
             Parses the actual markdown down to html
             </summary>
@@ -145,7 +195,7 @@
             <param name="sanitizeHtml">Sanitizes generated HTML by stripping scriptable html markup and directives</param>
             <returns></returns>        
         </member>
-        <member name="F:Westwind.Web.MarkdownControl.MarkdownParser.MarkdownParserMarkdig.OnCreateMarkdigPipeline">
+        <member name="F:Westwind.Web.Markdown.MarkdownParser.MarkdownParserMarkdig.OnCreateMarkdigPipeline">
              <summary>
              Allow interception of the Markdown Pipeline creation for Markdig
              Implement this func that returns a MarkdownPipelineBuilder that's
@@ -160,6 +210,28 @@
             
             Extracted from: westwind.utilitie
             </summary>
+        </member>
+        <member name="M:Westwind.Web.Markdown.Utilities.MarkdownUtils.GetLines(System.String,System.Int32)">
+            <summary>
+            Parses a string into an array of lines broken
+            by \r\n or \n
+            </summary>
+            <param name="s">String to check for lines</param>
+            <param name="maxLines">Optional - max number of lines to return</param>
+            <returns>array of strings, or null if the string passed was a null</returns>
+        </member>
+        <member name="M:Westwind.Web.Markdown.Utilities.MarkdownUtils.ExtractString(System.String,System.String,System.String,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Extracts a string from between a pair of delimiters. Only the first 
+            instance is found.
+            </summary>
+            <param name="source">Input String to work on</param>
+            <param name="beginDelim">Beginning delimiter</param>
+            <param name="endDelim">ending delimiter</param>
+            <param name="caseSensitive">Determines whether the search for delimiters is case sensitive</param>        
+            <param name="allowMissingEndDelimiter"></param>
+            <param name="returnDelimiters"></param>
+            <returns>Extracted string or string.Empty on no match</returns>
         </member>
         <member name="M:Westwind.Web.Markdown.Utilities.MarkdownUtils.SanitizeHtml(System.String,System.String)">
             <summary>
