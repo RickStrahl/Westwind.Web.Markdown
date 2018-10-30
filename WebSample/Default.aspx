@@ -1,30 +1,20 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" ValidateRequest="false" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/MasterPage.master" CodeFile="Default.aspx.cs" Inherits="_Default" ValidateRequest="false" %>
 <%@ Register TagPrefix="ww" Namespace="Westwind.Web.Markdown" Assembly="Westwind.Web.Markdown"  %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
-    <style>
-         body {
-             font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
-         }
-         .header { color: firebrick; font-weight: 600; margin-top: 50px; }
-    </style>
-</head>
-<body>
+<asp:Content runat="server"  ContentPlaceHolderID="MainContent">
 <div class="container">
-    <h1>Markdown Test Page</h1>
-    <hr />
-
+<h1>Markdown Test Page</h1>
+    
     <form id="form1" runat="server" >
         <div>
             
-                <h3 class="header" >Markdown with Normalized Text (default, doesn't have to be left-aligned):</h3>
-            <hr />
+            <h3 class="header" >Markdown with Normalized Text (default, doesn't have to be left-aligned):</h3>
+            
+            
+            <div class="small margin-bottom-2x margin-top" style="color: #bbb">rendered Markdown starts below...</div>
+            
+            
+
+
             <ww:Markdown runat="server" id="Markdown2" >
                 # Markdown Monster Change Log 
                 <small> [download latest version](https://markdownmonster.west-wind.com/download.aspx) &bull; 
@@ -62,6 +52,7 @@
 
             
             <h3 class="header">Markdown Display (non-normalized, has to be left aligned):</h3>
+          
             <hr />
                 
             
@@ -99,8 +90,8 @@ Another alternative is do the same thing using a controller method with an attri
 [Route(".well-known/acme-challenge/{id}")]
 public ActionResult LetsEncrypt(string id)
 {
-var file = Path.Combine(this.HostingEnv.WebRootPath, ".well-known", "acme-challenge", id);
-return PhysicalFile(file, "text/plain");            
+    var file = Path.Combine(this.HostingEnv.WebRootPath, ".well-known", "acme-challenge", id);
+    return PhysicalFile(file, "text/plain");            
 }
 ```
             </ww:Markdown>
@@ -151,19 +142,6 @@ Write some markdown text and see if it sticks.
         
         
 
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/dracula.min.css" />
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-
-        <script>
-            function highlightCode() {
-                var pres = document.querySelectorAll("pre>code");
-                for (var i = 0; i < pres.length; i++) {
-                    hljs.highlightBlock(pres[i]);
-                }
-            }
-            highlightCode();
-        </script>
     </form>
 </div>
-</body>
-</html>
+</asp:Content>

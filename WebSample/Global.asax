@@ -1,6 +1,7 @@
 ﻿<%@ Application Language="C#" %>
 <%@ Import Namespace="Markdig" %>
 <%@ Import Namespace="Markdig.Extensions.AutoIdentifiers" %>
+<%@ Import Namespace="Westwind.Web.Markdown" %>
 <%@ Import Namespace="Westwind.Web.Markdown.MarkdownParser" %>
 
 
@@ -30,6 +31,9 @@
 
             return builder;
         };
+
+        MarkdownHttpHandler.Configuration.SanitizeHtml = true;
+        MarkdownHttpHandler.Configuration.MarkdownTemplatePagePath = "~/_MarkdownPage.aspx";
 
     }
 

@@ -1,5 +1,11 @@
 # Westwind.Web.Markdown Changelog
 
+## Version 0.2.8
+* October 30th, 2018*
+
+* **Add MarkdownPageHandler to render Markdown Documents from Disk**  
+Created a new Markdown handler that can serve Markdown pages from disk and use a template to render the HTML content as a complete page. The idea is to allow you to drop Markdown files into any Web site and render them as full HTML documents using your site's chrome.
+
 ## Version 0.2.7
 *September 8th, 2018*
 
