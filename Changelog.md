@@ -1,6 +1,6 @@
 # Westwind.Web.Markdown Changelog
 
-## Version 0.2.9
+## Version 0.2.10
 *November 20th, 2018*
 
 * **Add File Loading to Markdown Control**  

@@ -56,7 +56,7 @@
         </member>
         <member name="M:Westwind.Web.Markdown.Markdown.ParseHtmlString(System.String,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Renders raw Markdown from string to HTML.
+            Renders raw Markdown from string to HTML with an HTMLString output for use in MVC or Web Pages instead of Raw output.
             </summary>
             <param name="markdown">Markdown to render</param>
             <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
