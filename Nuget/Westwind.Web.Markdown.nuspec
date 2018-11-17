@@ -2,8 +2,8 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata minClientVersion="2.25">
         <id>Westwind.Web.Markdown</id>
-        <version>0.2.8</version>
-        <title>West Wind Web Markdown Processing</title>
+        <version>0.2.9</version>
+        <title>West Wind Web Markdown Processing Tools</title>
         <authors>Rick Strahl,West Wind Technologies</authors>
         <licenseUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</licenseUrl>
         <projectUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</projectUrl>
@@ -15,16 +15,20 @@
         Provides the following features:
 
           * Markdown.Parse(), Markdown.ParseHtml()  methods
-          * A Markdown Control for static Markdown text or dynamic assignment
-          * Can render loose Markdown files using a customizable template
+          * Markdown Islands Markdown Control
+            *  A Markdown WebForms Control for static Markdown text or dynamic assignment
+            *  Load static text
+            *  Load content from files
+            *  Databind text            
+          * Loose Markdown file support - drop Markdown files into your site
           * Supports HTML Sanitation 
           * Supports White Space handling for Markdown text
           * Customization of Markdown Parser
           * Supports many Markdown support features courtesy of MarkDig
 
-        For .NET Core support see `Westwind.AspNetCore.Markdown`.
+        For .NET Core support with similar features see `Westwind.AspNetCore.Markdown`.
         </description>
-        <summary>Markdown Parsing support for System.Web based ASP.NET Applications. Includes Markdown Parsing helpers and a WebForms Control along with a number of support features.</summary>
+        <summary>Markdown Processing for System.Web based ASP.NET WebForms and MVC Applications</summary>
         <releaseNotes></releaseNotes>
         <copyright>Rick Strahl, West Wind Technologies 2017-2018</copyright>
         <language>en-US</language>

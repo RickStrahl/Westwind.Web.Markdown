@@ -19,6 +19,16 @@
             Strips scriptable tags and attributes. Minimal implementation.
             </summary>
         </member>
+        <member name="P:Westwind.Web.Markdown.Markdown.Filename">
+             <summary>
+             Virtual site relative file path that is loaded and displayed in the control's
+             content.
+            
+             ~/Markdown/Site
+            
+             Note related resources inside of the Markdown are *host page relative*, not Markdown document relative.
+             </summary>
+        </member>
         <member name="M:Westwind.Web.Markdown.Markdown.Render(System.Web.UI.HtmlTextWriter)">
             <summary>
             Overrides the HTML rendering of content

@@ -1,7 +1,13 @@
 # Westwind.Web.Markdown Changelog
 
-## Version 0.2.8
-* October 30th, 2018*
+## Version 0.2.9
+*November 20th, 2018*
+
+* **Add File Loading to Markdown Control**  
+Added a `Filename` property to the Markdown control that allows specifying a virtual path to a Markdown document (such as `<ww:markdown Filename="~/EmbeddedMarkdownFile.md"`). This allows for easy referencing of large Markdown blocks without having to type them directly into the host document.
+
+### Version 0.2.8
+*October 30th, 2018*
 
 * **Add MarkdownPageHandler to render Markdown Documents from Disk**  
 Created a new Markdown handler that can serve Markdown pages from disk and use a template to render the HTML content as a complete page. The idea is to allow you to drop Markdown files into any Web site and render them as full HTML documents using your site's chrome.

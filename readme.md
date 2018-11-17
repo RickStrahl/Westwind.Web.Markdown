@@ -16,7 +16,7 @@ This library provides:
 Simple Markdown Parsing with `Markdown.Parse()` and `Markdown.ParseHtml()` methods you can use in code or in your MVC or WebForms markup.
 
 * **Markdown WebForms Control for 'Markdown Islands'**  
-A useful `<markdown>` server WebControl for easily embedding static Markdown text or data-bound Markdown into a document. Great for using Markdown for static content inside of larger Web Pages.
+A useful `<ww:markdown>` server WebControl for easily embedding static Markdown text, Markdown from a file or data-bound Markdown into a document. Great for using Markdown for static content inside of larger Web Pages including the ability to load content from file.
 
 * **Serve Markdown Pages from Disk using MarkdownHttpHandler**  
 This Http handler allows you to drop Markdown files into a site and serve those Markdown files as HTML rendered into a configurable template. The template's job is to provide the site chrome around the HTML so this can simply be a small content page pointing a Master Page in WebForms or Layout Page in MVC. A model object is passed via the Items collection.
@@ -97,6 +97,7 @@ Then embed the control into the page where you want the markdown to appear:
 ```xml
 <ww:Markdown runat="server" id="md2" 
              NormalizeWhiteSpace="True"
+             Filename=""
              SanitizeHtml="True">
     # Markdown Monster Change Log 
     [download latest version](https://markdownmonster.west-wind.com/download.aspx) &bull; 
@@ -171,6 +172,20 @@ If you rather render your Markdown *as is* set `SantizeHtml` to `False`. To see 
 Both `Markdown.Parse()` and `Markdown.ParseHtml()` also have a sanitizeHtml parameter that is `true` by default.
 
 If you render static text you control then `SanitizeHtml=False` is usually Ok, but if you take user input and put into the browser to display, **always use `SanitizeHtml=True`**.
+
+#### Filename
+You can optionally provide a file name in lieu of text content in the Markdown control body. Files can be specified as virtual paths:
+
+```html
+<ww:Markdown  Filename="~/EmbeddedMarkdown.md"></ww:Markdown>
+```
+
+The file name is resolved and loaded from disk, converted into Markdown and rendered into the page.
+
+The file name is fed to `Server.MapPath()` so any path that is valid for `MapPath()` will work, but for portability I recommend you either use a page relative path or a virtual path as shown above.
+
+> #### Related Resources are Host Page relative
+> Please not that resources linked in the Markdown document - images mostly - are **host page** relative, not relative to the Markdown file. In most cases it'll be best to place referenced Markdown documents in the same folder as the host page to ensure that relative links work consistently.
 
 ### Static Markdown Rendering
 The control also includes static Markdown rendering that you can use in your Web Application inside of pages or your Web code.

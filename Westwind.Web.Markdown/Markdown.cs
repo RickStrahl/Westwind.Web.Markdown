@@ -33,6 +33,7 @@
 
 
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -66,16 +67,51 @@ namespace Westwind.Web.Markdown
 
         public bool SanitizeHtml { get; set; } = true;
 
+
+        /// <summary>
+        /// Virtual site relative file path that is loaded and displayed in the control's
+        /// content.
+        ///
+        /// ~/Markdown/Site
+        ///
+        /// Note related resources inside of the Markdown are *host page relative*, not Markdown document relative.
+        /// </summary>
+        [Description("Optional file name from which to load the Markdown. Overrides content setting if set. Note: markdown related resources are *HTML host page relative* not relative to the markdown document.")]
+        [Category("Markdown")]
+        public string Filename { get; set; } = null;
+
         /// <summary>
         /// Overrides the HTML rendering of content
         /// </summary>
         /// <param name="writer"></param>
         protected override void Render(HtmlTextWriter writer)
         {
-            if (string.IsNullOrEmpty(Text))
-                return;
 
-            string markdown = NormalizeWhiteSpaceText(Text);
+            string markdown = null;
+
+            if (!string.IsNullOrEmpty(Filename))
+            {
+                var file = Context.Server.MapPath(Filename);                
+                try
+                {
+                    markdown = File.ReadAllText(file);
+                }
+                catch
+                {
+                    return;
+                }
+            }
+            else
+            {
+
+                if (string.IsNullOrEmpty(Text))
+                    return;
+
+                if (NormalizeWhiteSpace)
+                    markdown = NormalizeWhiteSpaceText(Text);
+                else
+                    markdown = Text;
+            }
 
             var parser = MarkdownParserFactory.GetParser(false, false);
             var html = parser.Parse(markdown,SanitizeHtml);
@@ -164,7 +200,7 @@ namespace Westwind.Web.Markdown
         }
 
         /// <summary>
-        /// Renders raw Markdown from string to HTML.
+        /// Renders raw Markdown from string to HTML with an HTMLString output for use in MVC or Web Pages instead of Raw output.
         /// </summary>
         /// <param name="markdown">Markdown to render</param>
         /// <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>

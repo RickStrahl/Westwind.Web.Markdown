@@ -13,12 +13,10 @@ namespace Westwind.Web.Markdown
         public MarkdownModel MarkdownModel { get; set; }
 
         protected override void OnInit(EventArgs e)
-        {
-            
+        {            
             base.OnInit(e);
             MarkdownModel = Context.Items[MarkdownHttpHandler.ModelKey] as MarkdownModel;
         }
-
     }
 
     public class MarkdownModel

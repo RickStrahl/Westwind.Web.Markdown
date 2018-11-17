@@ -19,6 +19,13 @@
     <link href="<%= ResolveUrl("~/") %>lib/fontawesome/css/all.min.css" rel="stylesheet" />
     <link href="<%= ResolveUrl("~/") %>css/application.css" rel="stylesheet" />
     
+    <style>
+        .header {            
+            margin-top: 40px;
+            border-bottom: 1px #ddd solid;
+            padding-bottom: 0.4em;
+        }
+    </style>
     <asp:ContentPlaceHolder id="headers" runat="server">        
     </asp:ContentPlaceHolder>
 </head>

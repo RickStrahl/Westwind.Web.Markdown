@@ -7,7 +7,7 @@
     <form id="form1" runat="server" >
         <div>
             
-            <h3 class="header" >Markdown with Normalized Text (default, doesn't have to be left-aligned):</h3>
+            <h2 class="header" >Markdown with Normalized Text (default, doesn't have to be left-aligned):</h2>
             
             
             <div class="small margin-bottom-2x margin-top" style="color: #bbb">rendered Markdown starts below...</div>
@@ -51,10 +51,8 @@
             </ww:Markdown>
 
             
-            <h3 class="header">Markdown Display (non-normalized, has to be left aligned):</h3>
+            <h2 class="header">Markdown Display (non-normalized, has to be left aligned):</h2>
           
-            <hr />
-                
             
             <ww:Markdown runat="server" id="md1" NormalizeWhiteSpace="false">
 ### Eeeer, hold on there Doc: ASP.NET Core on IIS
@@ -97,8 +95,8 @@ public ActionResult LetsEncrypt(string id)
             </ww:Markdown>
             
             
-            <h3 class="header">SanitizeHtml Option</h3>
-            <hr />
+            <h2 class="header">SanitizeHtml Option</h2>
+            
 
             <ww:Markdown runat="server" SanitizeHtml="True">
                 <h5>There's a script hiding below (shouldn't fire alert box on load!)</h5>
@@ -115,8 +113,8 @@ public ActionResult LetsEncrypt(string id)
 
             </ww:Markdown>
                 
-            <h3 class="header">Dynamically assign Markdown:</h3>
-            <hr />
+            <h2 class="header">Dynamically assigned Markdown:</h2>
+            
                 
             <label class="">Enter some Markdown:</label><br />
             <asp:TextBox runat="server" ID="EditedMarkdown" TextMode="Multiline" class="form-control" style="height: 245px;">#### Markdown Text
@@ -132,11 +130,19 @@ Write some markdown text and see if it sticks.
     alert("GOTCHA: You shouldn't see this script with SanitizeHtml on");
 </script>
             </asp:TextBox>
+
             <asp:Button runat="server" ID="btnSubmit" Text="Save" />
             <hr />
 
             <%= Markdown.Parse(EditedMarkdown.Text, sanitizeHtml: true) %>
         
+
+        
+            <h2 class="header">Markdown File Embedding</h2>
+            <ww:Markdown runat="server" Filename="./MarkdownFileEmbedding.md" >
+            </ww:Markdown>
+            
+
         </div>
         
         
