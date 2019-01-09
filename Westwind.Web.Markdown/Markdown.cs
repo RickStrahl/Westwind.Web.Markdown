@@ -212,6 +212,41 @@ namespace Westwind.Web.Markdown
             return new HtmlString(Parse(markdown, usePragmaLines, forceReload, sanitizeHtml));
         }
 
+
+        /// <summary>
+        /// Parses content from a file on disk from Markdown to HTML.
+        /// </summary>
+        /// <param name="filename">A physical or virtual filename path. If running under System.Web this method uses MapPath to resolve paths.
+        /// For non-HttpContext environments this file name needs to be fully qualified.</param>
+        /// <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+        /// <param name="forceReload">Forces the parser to reloaded. Otherwise cached instance is used</param>
+        /// <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
+        /// <returns>HTML result as a string</returns>
+        public static string ParseFromFile(string filename, bool usePragmaLines = false, bool forceReload = false,
+            bool sanitizeHtml = true)
+        {
+            if (HttpContext.Current != null)
+                filename = HttpContext.Current.Server.MapPath(filename);
+
+            string markdown = File.ReadAllText(filename);
+            return Parse(markdown, usePragmaLines, forceReload, sanitizeHtml);
+        }
+
+        /// <summary>
+        /// Parses content from a file on disk from Markdown to an HtmlString object.
+        /// </summary>
+        /// <param name="filename">A physical or virtual filename path. If running under System.Web this method uses MapPath to resolve paths.
+        /// For non-HttpContext environments this file name needs to be fully qualified.</param>
+        /// <param name="usePragmaLines">Generates line numbers as ids into headers and paragraphs. Useful for previewers to match line numbers to rendered output</param>
+        /// <param name="forceReload">Forces the parser to reloaded. Otherwise cached instance is used</param>
+        /// <param name="sanitizeHtml">Strips out scriptable tags and attributes for prevent XSS attacks. Minimal implementation.</param>
+        /// <returns>HTML result as an HtmlString instanc</returns>
+        public static HtmlString ParseHtmlFromFile(string filename, bool usePragmaLines = false, bool forceReload = false, bool sanitizeHtml = true)
+        {
+            return new HtmlString(ParseFromFile(filename, usePragmaLines, forceReload, sanitizeHtml));
+        }
+
+
         #endregion
     }
 }

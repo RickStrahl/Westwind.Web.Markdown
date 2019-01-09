@@ -1,5 +1,10 @@
 # Westwind.Web.Markdown Changelog
 
+## Version 0.2.12
+
+* **Add Markdown.ParseHtmlFromFile() and ParseHtmlStringFromFile()**  
+Added methods that can parse Markdown from a file and embed it into the page.
+
 ## Version 0.2.10
 *November 20th, 2018*
 

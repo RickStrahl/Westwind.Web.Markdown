@@ -46,6 +46,19 @@ or even this in WebPages or MVC:
 @Markdown.ParseHtml("This is **bold Markdown**.")
 ```
 
+There are also a couple of file based methods that parse Markdown from files:
+
+
+```html
+<%= Markdown.ParseHtmlFromFile("~/HomePageMainContent.md") %>
+```
+
+or in MVC:
+
+```html
+@Markdown.ParseHtmlStringFromFile("~/HomePageMainContent.md")
+```
+
 
 ## Markdown Control
 The Web Control provides you the abililty to easily embed static Markdown text into any Web Forms page.
