@@ -139,9 +139,22 @@ Write some markdown text and see if it sticks.
 
         
             <h2 class="header">Markdown File Embedding</h2>
+            <ww:Markdown runat="server">
+               The following is embedded into the page using:
+
+                ```html
+                <ww:Markdown runai="server" Filename="./MarkdownFileEmbedding.md" >
+                </ww:Markdown>
+                ```
+
+            </ww:Markdown>
+            
+            <hr />
+
             <ww:Markdown runat="server" Filename="./MarkdownFileEmbedding.md" >
             </ww:Markdown>
             
+            <hr />
 
         </div>
         

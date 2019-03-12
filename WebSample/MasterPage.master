@@ -82,12 +82,12 @@
     <!-- slide in menu - Remove if you don't use it -->
     <nav class="slide-menu">
         <div style="padding: 10px 10px 10px 3px;">
-            <a class="disabled">
+            <a class="disabled" >
                 <i class="fas fa-home"></i>
                 Main Menu
             </a>
 
-            <a href="~/">
+            <a href="<%= ResolveUrl("~/") %>">
                 <i class="fas fa-home"></i>
                 Home
             </a>
