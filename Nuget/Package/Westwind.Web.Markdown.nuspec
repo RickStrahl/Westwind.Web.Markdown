@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata minClientVersion="2.25">
         <id>Westwind.Web.Markdown</id>
-        <version>0.2.12</version>
+        <version>0.2.13</version>
         <title>West Wind Web Markdown Processing Tools</title>
         <authors>Rick Strahl,West Wind Technologies</authors>
         <licenseUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</licenseUrl>
@@ -30,14 +30,14 @@
         </description>
         <summary>Markdown Processing for System.Web based ASP.NET WebForms and MVC Applications</summary>
         <releaseNotes></releaseNotes>
-        <copyright>Rick Strahl, West Wind Technologies 2017-2018</copyright>
+        <copyright>Rick Strahl, West Wind Technologies 2017-2019</copyright>
         <language>en-US</language>
         <tags>Markdown WebForms WebControl Markdown-Parser Westwind</tags>
         <frameworkAssemblies>
             <frameworkAssembly assemblyName="System.Web" targetFramework="" />            
         </frameworkAssemblies>
         <dependencies>        
-            <dependency id="Markdig" version="0.15.6"  />
+            <dependency id="Markdig" version="0.16.0"  />
         </dependencies>
     </metadata>
 </package>
