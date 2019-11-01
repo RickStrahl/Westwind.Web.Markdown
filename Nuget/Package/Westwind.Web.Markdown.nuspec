@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2013/01/nuspec.xsd">
     <metadata minClientVersion="2.25">
         <id>Westwind.Web.Markdown</id>
-        <version>0.2.14</version>
+        <version>0.2.15</version>
         <title>West Wind Web Markdown Processing Tools</title>
         <authors>Rick Strahl,West Wind Technologies</authors>
         <licenseUrl>https://github.com/RickStrahl/Westwind.Web.Markdown</licenseUrl>
@@ -37,7 +37,7 @@
             <frameworkAssembly assemblyName="System.Web" targetFramework="" />            
         </frameworkAssemblies>
         <dependencies>        
-            <dependency id="Markdig" version="0.16.0"  />
+            <dependency id="Markdig" version="0.17.1"  />
         </dependencies>
     </metadata>
 </package>
